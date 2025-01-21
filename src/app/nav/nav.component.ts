@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { MaterialModule } from '../materiales/material-angular/material.module';
+import { MaterialModule } from '../modulos/material-angular/material.module';
 
 @Component({
   selector: 'app-nav',
