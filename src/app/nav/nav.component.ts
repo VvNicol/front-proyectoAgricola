@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MaterialModule } from '../materiales/material-angular/material.module';
 
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [],
+  imports: [MaterialModule],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })

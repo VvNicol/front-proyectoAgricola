@@ -1,7 +1,13 @@
-<nav>
-    <ul>
-      <li><button (click)="navegarAIniciarSesion()">Iniciar Sesión</button></li>
-      <li><button (click)="navegarARegistrarse()">Registrarse</button></li>
-    </ul>
+<mat-toolbar color="primary">
+  <nav class="navbar">
+    <div class="logo-container">
+      <img src="assets/imagenes/Logo.svg" alt="Logo" class="logo" />
+      <span class="logo-text">Terraflora</span>
+    </div>
+
+    <div class="buttons-container">
+      <button mat-button (click)="navegarAIniciarSesion()">Iniciar Sesión</button>
+      <button mat-button (click)="navegarARegistrarse()">Registrarse</button>
+    </div>
   </nav>
-  
+</mat-toolbar>

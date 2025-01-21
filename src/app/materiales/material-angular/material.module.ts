@@ -8,7 +8,8 @@ const material = [
   MatToolbarModule,
   MatButtonModule,
   MatIcon,
-  MatIconModule
+  MatIconModule, 
+  CommonModule
 ]
 
 @NgModule({
