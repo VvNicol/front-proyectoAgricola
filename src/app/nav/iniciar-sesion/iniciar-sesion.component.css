@@ -1,0 +1,51 @@
+/* Contenedor principal */
+.contenedor {
+    height: 52.875rem; /* Altura en rem */
+    width: 80rem; /* Ancho en rem */
+    margin: 0 auto; /* Centrado horizontal */
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+    .contenedor {
+        width: 100%;
+        height: auto;
+    }
+
+    .row {
+        flex-direction: column; /* Apilar los elementos en columnas */
+    }
+
+    .col-5, .col-7 {
+        width: 100%;
+        padding: 10px; 
+    }
+
+    .col-5 {
+        margin-bottom: 20px; /* Espacio entre las dos secciones */
+    }
+
+    /* Ajustar la imagen para que se vea bien en pantallas pequeñas */
+    .col-7 img {
+        width: 100%;
+        height: auto; 
+    }
+}
+
+/* Media query para pantallas medianas y grandes */
+@media (min-width: 769px) {
+    .row {
+        display: flex; /* Usar flexbox para diseño en línea */
+    }
+
+    .col-5, .col-7 {
+        padding: 20px; /* Espaciado para las columnas */
+    }
+
+    /* Imagen ajustada para pantallas grandes */
+    .col-7 img {
+        object-fit: cover;
+        height: 100%; 
+        width: 100%;
+    }
+}
