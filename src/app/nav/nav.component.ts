@@ -10,7 +10,8 @@ import { MaterialModule } from '../modulos/material-angular/material.module';
   styleUrl: './nav.component.css'
 })
 export class NavComponent {
-  constructor(private router: Router) {}
+
+  constructor(private router: Router) { }
 
   navegarAIniciarSesion(): void {
     this.router.navigate(['/iniciar-sesion']);
@@ -18,5 +19,9 @@ export class NavComponent {
 
   navegarARegistrarse(): void {
     this.router.navigate(['/registrarse']);
+  }
+
+  navegarAInicio(): void {
+    this.router.navigate(['/inicio'])
   }
 }

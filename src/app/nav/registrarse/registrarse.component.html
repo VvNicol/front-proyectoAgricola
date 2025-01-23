@@ -1,1 +1,56 @@
-<p>registrarse works!</p>
+<div class="row bg-primary contenedor">
+
+    <!-- Columna izquierda (Imágenes) -->
+    <div class="col-12 col-md-5 p-0">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <img src="assets/agricultura-imagen.jpg" class="img-fluid w-100 h-100 object-fit-cover" alt="Agricultura" />
+        </div>
+    </div>
+
+    <!-- Columna derecha (Registrarse) -->
+    <div class="col-12 col-md-7 bg-light d-flex align-items-center justify-content-center py-5">
+        <div class=" col-10 p-5 rounded shadow-lg">
+            <!-- Título de la sección -->
+            <h2 class="text-center mb-12 text-primary">Registrarse</h2>
+
+            <!-- Formulario de registro -->
+            <form>
+                <!-- Nombre completo -->
+                <div class="mb-4">
+                    <label for="nombreCompleto" class="form-label">Nombre Completo</label>
+                    <input type="text" class="form-control" id="nombreCompleto" placeholder="Ingresa tu nombre completo"
+                        required />
+                </div>
+
+                <!-- Correo Electrónico -->
+                <div class="mb-4">
+                    <label for="correo" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="correo" placeholder="ejemplo@correo.com" required />
+                </div>
+
+                <!-- Teléfono -->
+                <div class="mb-4">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="tel" class="form-control" id="telefono" placeholder="Ingresa tu número de teléfono"
+                        required />
+                </div>
+
+                <!-- Contraseña -->
+                <div class="mb-4">
+                    <label for="contrasenia" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="contrasenia" placeholder="******" required />
+                </div>
+
+                <!-- Confirmar Contraseña -->
+                <div class="mb-4">
+                    <label for="confirmarContrasenia" class="form-label">Confirmar Contraseña</label>
+                    <input type="password" class="form-control" id="confirmarContrasenia" placeholder="******"
+                        required />
+                </div>
+
+                <!-- Botón de registro -->
+                <button type="submit" class="btn btn-primary w-100 mt-4">Registrarse</button>
+            </form>
+        </div>
+    </div>
+</div>
