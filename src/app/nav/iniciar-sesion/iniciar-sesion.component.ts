@@ -5,7 +5,7 @@ import { FormularioModule } from '../../modulos/formulario/formulario.module';
 @Component({
   selector: 'app-iniciar-sesion',
   standalone: true,
-  imports: [MaterialModule, FormularioModule ],
+  imports: [MaterialModule],
   templateUrl: './iniciar-sesion.component.html',
   styleUrl: './iniciar-sesion.component.css'
 })

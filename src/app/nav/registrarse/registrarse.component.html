@@ -6,51 +6,103 @@
             <img src="assets/agricultura-imagen.jpg" class="img-fluid w-100 h-100 object-fit-cover" alt="Agricultura" />
         </div>
     </div>
-
     <!-- Columna derecha (Registrarse) -->
     <div class="col-12 col-md-7 bg-light d-flex align-items-center justify-content-center py-5">
-        <div class=" col-10 p-5 rounded shadow-lg">
+        <div class="col-lg-6 col-md-8 col-10 p-5 rounded shadow-lg">
             <!-- Título de la sección -->
-            <h2 class="text-center mb-12 text-primary">Registrarse</h2>
+            <h2 class="text-center mb-4 text-primary">Registrarse</h2>
 
-            <!-- Formulario de registro -->
-            <form>
+            <!-- Barra de progreso de Angular Material -->
+            <mat-progress-bar *ngIf="cargando" mode="indeterminate"  [color]="'accent'" style="background-color: #4CAF50;"></mat-progress-bar>
+        
+            <form [formGroup]="formularioRegistro" (ngSubmit)="registrar()">
                 <!-- Nombre completo -->
                 <div class="mb-4">
                     <label for="nombreCompleto" class="form-label">Nombre Completo</label>
-                    <input type="text" class="form-control" id="nombreCompleto" placeholder="Ingresa tu nombre completo"
-                        required />
+                    <input type="text" id="nombreCompleto" formControlName="nombreCompleto" class="form-control"
+                        [ngClass]="{ 'is-invalid': formularioRegistro.get('nombreCompleto')?.touched && formularioRegistro.get('nombreCompleto')?.invalid }" />
+                    <div *ngIf="formularioRegistro.get('nombreCompleto')?.touched && formularioRegistro.get('nombreCompleto')?.invalid"
+                        class="invalid-feedback">
+                        El nombre completo es obligatorio.
+                    </div>
                 </div>
 
-                <!-- Correo Electrónico -->
+                <!-- Correo -->
                 <div class="mb-4">
                     <label for="correo" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="correo" placeholder="ejemplo@correo.com" required />
+                    <input type="email" id="correo" formControlName="correo" class="form-control"
+                        [ngClass]="{ 'is-invalid': formularioRegistro.get('correo')?.touched && formularioRegistro.get('correo')?.invalid }" />
+                    <div *ngIf="formularioRegistro.get('correo')?.touched && formularioRegistro.get('correo')?.hasError('required')"
+                        class="invalid-feedback">
+                        El correo electrónico es obligatorio.
+                    </div>
+                    <div *ngIf="formularioRegistro.get('correo')?.touched && formularioRegistro.get('correo')?.hasError('email')"
+                        class="invalid-feedback">
+                        El correo no tiene un formato válido.
+                    </div>
                 </div>
 
                 <!-- Teléfono -->
                 <div class="mb-4">
                     <label for="telefono" class="form-label">Teléfono</label>
-                    <input type="tel" class="form-control" id="telefono" placeholder="Ingresa tu número de teléfono"
-                        required />
+                    <input type="tel" id="telefono" formControlName="telefono" class="form-control" [ngClass]="{
+                        'is-invalid':
+                        formularioRegistro.get('telefono')?.touched &&
+                        formularioRegistro.get('telefono')?.invalid
+                    }" />
+                    <!-- Mensaje si el campo está vacío -->
+                    <div *ngIf="
+                        formularioRegistro.get('telefono')?.touched &&
+                        formularioRegistro.get('telefono')?.hasError('required')
+                    " class="invalid-feedback">
+                        El teléfono es obligatorio.
+                    </div>
+                    <!-- Mensaje si el campo contiene algo que no son números -->
+                    <div *ngIf="
+                        formularioRegistro.get('telefono')?.touched &&
+                        formularioRegistro.get('telefono')?.hasError('pattern')
+                    " class="invalid-feedback">
+                        El teléfono debe contener solo números.
+                    </div>
                 </div>
 
                 <!-- Contraseña -->
                 <div class="mb-4">
                     <label for="contrasenia" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="contrasenia" placeholder="******" required />
+                    <input type="password" id="contrasenia" formControlName="contrasenia" class="form-control"
+                        [ngClass]="{ 'is-invalid': formularioRegistro.get('contrasenia')?.touched && formularioRegistro.get('contrasenia')?.invalid }" />
+                    <div *ngIf="formularioRegistro.get('contrasenia')?.touched && formularioRegistro.get('contrasenia')?.hasError('required')"
+                        class="invalid-feedback">
+                        La contraseña es obligatoria.
+                    </div>
+                    <div *ngIf="formularioRegistro.get('contrasenia')?.touched && formularioRegistro.get('contrasenia')?.hasError('minlength')"
+                        class="invalid-feedback">
+                        La contraseña debe tener al menos 6 caracteres.
+                    </div>
                 </div>
 
-                <!-- Confirmar Contraseña -->
+                <!-- Confirmar contraseña -->
                 <div class="mb-4">
                     <label for="confirmarContrasenia" class="form-label">Confirmar Contraseña</label>
-                    <input type="password" class="form-control" id="confirmarContrasenia" placeholder="******"
-                        required />
+                    <input type="password" id="confirmarContrasenia" formControlName="confirmarContrasenia"
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': formularioRegistro.hasError('notMatching') && formularioRegistro.get('confirmarContrasenia')?.touched }" />
+                    <div *ngIf="formularioRegistro.hasError('notMatching') && formularioRegistro.get('confirmarContrasenia')?.touched"
+                        class="invalid-feedback">
+                        Las contraseñas no coinciden.
+                    </div>
                 </div>
 
                 <!-- Botón de registro -->
-                <button type="submit" class="btn btn-primary w-100 mt-4">Registrarse</button>
+                <button type="submit" class="btnRegistro btn btn-primary w-100 mt-4" [disabled]="formularioRegistro.invalid">
+                    Registrarse
+                </button>
+
+                <!-- Mensajes -->
+                <p *ngIf="mensaje" class="text-success text-center mt-3">{{ mensaje }}</p>
+                <p *ngIf="error" class="text-danger text-center mt-3">{{ error }}</p>
             </form>
+
         </div>
     </div>
 </div>

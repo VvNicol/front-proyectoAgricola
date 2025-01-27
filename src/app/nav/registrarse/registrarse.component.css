@@ -1,32 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&family=Poppins:wght@400;600&family=Open+Sans:wght@400;600&family=Roboto:wght@400;500&display=swap');
 
-/* Contenedor principal */
 .contenedor {
-  height: 52.875rem; /* Altura fija */
-  width: 80rem; /* Anchura fija */
-  margin: 0 auto;
-}
-
-/* Contenedor del formulario */
-.login-container {
-  background-color: #ffffff;
-  padding: 40px; /* Más espacio para el formulario */
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 100%;
+  height: calc(100vh - 67px);
+  width: 100%; 
 }
 
 /* Estilos para el título */
 h2 {
   font-family: 'Raleway', sans-serif;
-  color: #4CAF50; /* Verde claro */
+  color: #4CAF50!important; /* Verde pastel */
   font-weight: 600;
-  font-size: 28px; /* Tamaño un poco más grande */
+  font-size: 26px; /* Tamaño ajustado */
   margin-bottom: 1.5rem;
   text-align: center;
 }
 
-/* Estilos para etiquetas de formulario */
+/* Estilos para los subtítulos */
+h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+/* Estilos para cabeceras */
+h4 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+/* Párrafos */
+p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  color: #a8d8a0; /* Verde pastel */
+}
+
+/* Estilos para el formulario */
 label {
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
@@ -52,7 +66,6 @@ button.btn-primary {
   text-transform: none;
   padding: 12px 0;
   font-size: 1rem;
-  font-weight: bold;
   border-radius: 8px;
   transition: background-color 0.3s ease;
   border: none;
@@ -73,38 +86,16 @@ button.btn-primary:hover {
   text-decoration: underline;
 }
 
-/* Imagen de la columna izquierda */
-.col-12 img {
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
-  filter: brightness(0.8); /* Suaviza la imagen */
-  border-radius: 8px 0 0 8px;
-}
-
 /* Ajustes para dispositivos móviles */
 @media (max-width: 768px) {
   .contenedor {
     width: 100%;
-    height: auto;
-    padding: 20px;
-  }
-
-  .row {
-    flex-direction: column; /* Apilar los elementos */
-  }
-
-  .col-12.col-md-4,
-  .col-12.col-md-8 {
-    margin-bottom: 20px;
-  }
-
-  .login-container {
+    height: auto; /* Altura automática */
     padding: 20px;
   }
 }
 
-/* Ajustes para pantallas grandes */
+/* Ajustes para pantallas medianas */
 @media (min-width: 769px) {
   .row {
     display: flex;

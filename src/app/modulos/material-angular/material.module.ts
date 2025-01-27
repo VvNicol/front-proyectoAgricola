@@ -5,6 +5,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'; 
 import { MatIconModule } from '@angular/material/icon'; 
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule} from '@angular/material/progress-bar';
+import { materialize } from 'rxjs';
 
 const material = [
   MatFormFieldModule,
@@ -12,7 +14,8 @@ const material = [
   MatIconModule,
   MatInputModule,  
   CommonModule,
-  MatCardModule
+  MatCardModule,
+  MatProgressBarModule
 ];
 
 @NgModule({
