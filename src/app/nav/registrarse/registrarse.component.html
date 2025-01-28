@@ -2,9 +2,12 @@
 
     <!-- Columna izquierda (Imágenes) -->
     <div class="col-12 col-md-5 p-0">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <img src="assets/Agricultura2.jpg" class="img-fluid w-100 h-100 object-fit-cover" alt="Agricultura" />
+        <div class="carrusel-contenedor">
+            <div class="carrusel-imagen">
+                <img [src]="imagenes[indiceImagenActual]" alt="Imagen del carrusel" />
+            </div>
         </div>
+
     </div>
     <!-- Columna derecha (Registrarse) -->
     <div class="col-12 col-md-7 bg-light d-flex align-items-center justify-content-center py-5">

@@ -22,6 +22,8 @@ export class RegistrarseComponent {
   progreso: number = 0;
 
   constructor(private fb: FormBuilder, private registroService: RegistroService, private router: Router) {
+
+    this.iniciarCarrusel();
     // Definimos el formulario reactivo
     this.formularioRegistro = this.fb.group(
       {
@@ -75,6 +77,27 @@ export class RegistrarseComponent {
         this.cargando = false; // Detiene la barra de progreso
       }
     });
+  }
+
+  /*Carrusel*/
+  imagenes: string[] = [
+    'assets/Agricultura.jpg',
+    'assets/Agricultura2.jpg',
+    'assets/Agricultura3.jpg'
+  ];
+
+  indiceImagenActual: number = 0;
+
+  // Método para iniciar el carrusel (cambio automático)
+  iniciarCarrusel() {
+    setInterval(() => {
+      this.cambiarImagen();
+    }, 5000); // Cambiar imagen cada 3 segundos
+  }
+
+  // Método para cambiar la imagen
+  cambiarImagen() {
+    this.indiceImagenActual = (this.indiceImagenActual + 1) % this.imagenes.length;
   }
 }
 
