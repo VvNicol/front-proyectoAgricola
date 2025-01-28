@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&family=Poppins:wght@400;600&family=Open+Sans:wght@400;600&family=Roboto:wght@400;500&display=swap');
 
 .contenedor {
-  height: calc(100vh - 67px);
+  height: calc(100vh - 66px);
   width: 100%; 
 }
 

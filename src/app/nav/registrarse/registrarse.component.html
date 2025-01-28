@@ -3,18 +3,19 @@
     <!-- Columna izquierda (Imágenes) -->
     <div class="col-12 col-md-5 p-0">
         <div class="h-100 d-flex align-items-center justify-content-center">
-            <img src="assets/agricultura-imagen.jpg" class="img-fluid w-100 h-100 object-fit-cover" alt="Agricultura" />
+            <img src="public/Img/Agricultura.jpg" class="img-fluid w-100 h-100 object-fit-cover" alt="Agricultura" />
         </div>
     </div>
     <!-- Columna derecha (Registrarse) -->
     <div class="col-12 col-md-7 bg-light d-flex align-items-center justify-content-center py-5">
-        <div class="col-lg-6 col-md-8 col-10 p-5 rounded shadow-lg">
+        <div class="col-lg-8 col-md-12 col-10 p-5 rounded shadow-lg">
             <!-- Título de la sección -->
             <h2 class="text-center mb-4 text-primary">Registrarse</h2>
 
             <!-- Barra de progreso de Angular Material -->
-            <mat-progress-bar *ngIf="cargando" mode="indeterminate"  [color]="'accent'" style="background-color: #4CAF50;"></mat-progress-bar>
-        
+            <mat-progress-bar *ngIf="cargando" mode="indeterminate" [color]="'accent'"
+                style="background-color: #4CAF50;"></mat-progress-bar>
+
             <form [formGroup]="formularioRegistro" (ngSubmit)="registrar()">
                 <!-- Nombre completo -->
                 <div class="mb-4">
@@ -94,7 +95,8 @@
                 </div>
 
                 <!-- Botón de registro -->
-                <button type="submit" class="btnRegistro btn btn-primary w-100 mt-4" [disabled]="formularioRegistro.invalid">
+                <button type="submit" class="btnRegistro btn btn-primary w-100 mt-4"
+                    [disabled]="formularioRegistro.invalid">
                     Registrarse
                 </button>
 

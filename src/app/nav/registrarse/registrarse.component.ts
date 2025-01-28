@@ -76,6 +76,5 @@ export class RegistrarseComponent {
       }
     });
   }
-
 }
 
