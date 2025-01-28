@@ -64,9 +64,9 @@ export class RegistrarseComponent {
         this.error = '';           // Limpiar el mensaje de error
         this.progreso = 100;       // Completar la barra de progreso
         setTimeout(() => {
-          this.router.navigate(['/iniciar-sesion']); // Redirige después de 2 segundos
+          this.router.navigate(['/iniciar-sesion']);
           this.cargando = false; // Detiene la barra de progreso
-        }, 2000); // Redirige después de 2 segundos
+        }, 5000); // Redirige después de 5 segundos
       },
       error: (err) => {
         // Si hay un error al registrar, muestra el mensaje de error
