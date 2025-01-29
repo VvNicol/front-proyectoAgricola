@@ -15,6 +15,7 @@ import { MaterialModule } from '../../modulos/material-angular/material.module';
 })
 export class RegistrarseComponent {
 
+
   formularioRegistro: FormGroup; // Formulario reactivo
   mensaje: string = ''; // Mensaje de éxito
   error: string = ''; // Mensaje de error
@@ -24,7 +25,8 @@ export class RegistrarseComponent {
   constructor(private fb: FormBuilder, private registroService: RegistroService, private router: Router) {
 
     this.iniciarCarrusel();
-    // Definimos el formulario reactivo
+
+    //formulario reactivo
     this.formularioRegistro = this.fb.group(
       {
         nombreCompleto: ['', Validators.required], // Campo requerido
@@ -64,11 +66,8 @@ export class RegistrarseComponent {
         // Si el registro es exitoso, muestra el mensaje de éxito
         this.mensaje = response?.message || "Registro exitoso. Por favor verifica tu correo para iniciar sesión.";
         this.error = '';           // Limpiar el mensaje de error
-        this.progreso = 100;       // Completar la barra de progreso
-        setTimeout(() => {
-          this.router.navigate(['/iniciar-sesion']);
-          this.cargando = false; // Detiene la barra de progreso
-        }, 5000); // Redirige después de 5 segundos
+        this.progreso = 100;
+        this.cargando = false;      // Completar la barra de progreso
       },
       error: (err) => {
         // Si hay un error al registrar, muestra el mensaje de error
@@ -77,6 +76,10 @@ export class RegistrarseComponent {
         this.cargando = false; // Detiene la barra de progreso
       }
     });
+  }
+
+  confirmarExito() {
+    this.router.navigate(['/iniciar-sesion'])
   }
 
   /*Carrusel*/
@@ -88,13 +91,11 @@ export class RegistrarseComponent {
 
   indiceImagenActual: number = 0;
 
-  // Método para iniciar el carrusel (cambio automático)
   iniciarCarrusel() {
     setInterval(() => {
       this.cambiarImagen();
-    }, 5000); // Cambiar imagen cada 3 segundos
+    }, 5000);
   }
-
   // Método para cambiar la imagen
   cambiarImagen() {
     this.indiceImagenActual = (this.indiceImagenActual + 1) % this.imagenes.length;

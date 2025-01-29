@@ -1,9 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&family=Poppins:wght@400;600&family=Open+Sans:wght@400;600&family=Roboto:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Poppins:wght@400&display=swap');
+
+::ng-deep .mat-progress-bar-buffer {
+  background-color: #e0e0e0 !important;
+}
+
+::ng-deep .mat-progress-bar-fill {
+  background-color: #4CAF50 !important;
+}
+
+
+.mensaje-exito {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.mensaje-exito span {
+  flex: 1;
+}
+
+.btn-verde {
+  background-color: #4CAF50 !important;
+  border-color: #4CAF50 !important;
+  color: white !important;
+}
+
+.btn-verde i {
+  font-size: 1.5rem;
+}
+
+.mat-progress-bar {
+  margin-top: 10px;
+}
 
 .contenedor {
   height: calc(100vh - 66px);
-  width: 100%; 
+  width: 100%;
 }
+
 .carrusel-contenedor {
   width: 100%;
   height: 100%;
@@ -22,17 +65,16 @@
   object-fit: cover;
 }
 
-/* Estilos para el título */
+/* Estilos de texto */
 h2 {
   font-family: 'Raleway', sans-serif;
-  color: #4CAF50!important; /* Verde pastel */
+  color: #4CAF50 !important;
   font-weight: 600;
-  font-size: 26px; /* Tamaño ajustado */
+  font-size: 26px;
   margin-bottom: 1.5rem;
   text-align: center;
 }
 
-/* Estilos para los subtítulos */
 h3 {
   font-family: 'Poppins', sans-serif;
   font-size: 15px;
@@ -41,46 +83,29 @@ h3 {
   margin-bottom: 0.5rem;
 }
 
-/* Estilos para cabeceras */
-h4 {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 0.5rem;
-}
-
-/* Párrafos */
 p {
-  font-family: 'Roboto', sans-serif;
-  font-size: 12px;
-  color: #a8d8a0; /* Verde pastel */
+  font-size: 15px;
+  color: #a8d8a0;
 }
 
-/* Estilos para el formulario */
 label {
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
-  font-weight: 400;
   color: #333;
-  margin-bottom: 0.5rem;
   display: block;
+  margin-bottom: 0.5rem;
 }
 
-/* Estilo para los campos de entrada */
 input.form-control {
-  font-family: 'Roboto', sans-serif;
   font-size: 15px;
   padding: 10px;
   border: 1px solid #ced4da;
   border-radius: 5px;
 }
 
-/* Estilo para el botón de registro */
 button.btn-primary {
   background-color: #4CAF50;
   color: white;
-  text-transform: none;
   padding: 12px 0;
   font-size: 1rem;
   border-radius: 8px;
@@ -89,12 +114,10 @@ button.btn-primary {
 }
 
 button.btn-primary:hover {
-  background-color: #45a049; /* Efecto hover */
+  background-color: #45a049;
 }
 
-/* Links del formulario */
 .text-center a {
-  font-family: 'Roboto', sans-serif;
   font-size: 13px;
   color: #007bff;
 }
@@ -103,16 +126,15 @@ button.btn-primary:hover {
   text-decoration: underline;
 }
 
-/* Ajustes para dispositivos móviles */
+/* Responsividad */
 @media (max-width: 768px) {
   .contenedor {
     width: 100%;
-    height: auto; /* Altura automática */
+    height: auto;
     padding: 20px;
   }
 }
 
-/* Ajustes para pantallas medianas */
 @media (min-width: 769px) {
   .row {
     display: flex;

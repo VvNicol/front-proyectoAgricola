@@ -10,13 +10,14 @@
 
     </div>
     <!-- Columna derecha (Registrarse) -->
-    <div class="col-12 col-md-7 bg-light d-flex align-items-center justify-content-center py-5">
+    <div class="col-12 columna-derecha col-md-7 bg-light d-flex align-items-center justify-content-center py-5">
+
         <div class="col-lg-8 col-md-12 col-10 p-5 rounded shadow-lg">
             <!-- Título de la sección -->
             <h2 class="text-center mb-4 text-primary">Registrarse</h2>
 
             <!-- Barra de progreso de Angular Material -->
-            <mat-progress-bar *ngIf="cargando" mode="indeterminate" [color]="'accent'"
+            <mat-progress-bar *ngIf="cargando" mode="indeterminate"
                 style="background-color: #4CAF50;"></mat-progress-bar>
 
             <form [formGroup]="formularioRegistro" (ngSubmit)="registrar()">
@@ -103,8 +104,15 @@
                     Registrarse
                 </button>
 
-                <!-- Mensajes -->
-                <p *ngIf="mensaje" class="text-success text-center mt-3">{{ mensaje }}</p>
+                <!-- Mensaje de éxito -->
+                <div *ngIf="mensaje" class="mensaje-exito d-flex justify-content-between align-items-center p-3">
+                    <span class="me-1">{{ mensaje }} </span>
+                    <button class="btn btn-success btn-verde" (click)="confirmarExito()">
+                        <i class="bi bi-check-circle"></i>
+                    </button>
+                </div>
+
+                <!-- Mensaje de error -->
                 <p *ngIf="error" class="text-danger text-center mt-3">{{ error }}</p>
             </form>
 
