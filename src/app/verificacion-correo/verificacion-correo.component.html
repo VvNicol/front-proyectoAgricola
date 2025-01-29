@@ -1,0 +1,9 @@
+<div class="verificacion-container">
+    <h2>{{ mensaje }}</h2>
+    <p *ngIf="mensaje === '¡Cuenta verificada con éxito!'">
+        ¡Tu cuenta ha sido verificada con éxito! Ahora puedes iniciar sesión.
+    </p>
+    <p *ngIf="mensaje === 'El token es inválido o ha expirado.'">
+        El enlace de verificación ha caducado o no es válido. Por favor, verifica tu correo nuevamente.
+    </p>
+</div>
