@@ -1,33 +1,67 @@
 <div class="row bg-primary contenedor">
     <!-- Columna izquierda (Inicio de sesión) -->
-    <div class="col-12 col-md-5 bg-warning d-flex align-items-center justify-content-center py-5">
-        <div class="login-container">
-            <!-- Título de la sección -->
-            <h2 class="text-center mb-4">Inicia Sesión</h2>
+    <div class="col-12 col-md-7 bg-light d-flex align-items-center justify-content-center py-5">
+        <!--  <img src="assets/Agricultura.jpg" alt="Fondo" class="imagen-fondo">-->
+
+        <div class="col-lg-8 col-md-12 col-10 p-5 formulario bg-light rounded shadow-lg">
+            <!-- Título -->
+            <h2 class="text-center mb-4 text-primary">Iniciar Sesión</h2>
+
+            <!-- Barra de carga -->
+            <mat-progress-bar *ngIf="cargando" mode="indeterminate"
+                style="background-color: #4CAF50;"></mat-progress-bar>
 
             <!-- Formulario de inicio de sesión -->
-            <form>
-                <div class="form-group mb-3">
-                    <label for="correo">Correo Electrónico</label>
-                    <input type="correo" class="form-control" id="correo" placeholder="ejemplo@correo.com" required />
+            <form [formGroup]="formularioInicioSesion" (ngSubmit)="iniciarSesion()">
+                <!-- Correo Electrónico -->
+                <div class="mb-4">
+                    <label for="correo" class="form-label">Correo Electrónico</label>
+                    <input type="email" id="correo" formControlName="correo" class="form-control"
+                        [ngClass]="{ 'is-invalid': formularioInicioSesion.get('correo')?.touched && formularioInicioSesion.get('correo')?.invalid }" />
+                    <div *ngIf="formularioInicioSesion.get('correo')?.touched && formularioInicioSesion.get('correo')?.hasError('required')"
+                        class="invalid-feedback">
+                        El correo electrónico es obligatorio.
+                    </div>
+                    <div *ngIf="formularioInicioSesion.get('correo')?.touched && formularioInicioSesion.get('correo')?.hasError('email')"
+                        class="invalid-feedback">
+                        El correo no tiene un formato válido.
+                    </div>
                 </div>
 
-                <div class="form-group mb-3">
-                    <label for="contrasenia">Contraseña</label>
-                    <input type="password" class="form-control" id="contrasenia" placeholder="******" required />
+                <!-- Contraseña -->
+                <div class="mb-4">
+                    <label for="contrasenia" class="form-label">Contraseña</label>
+                    <input type="password" id="contrasenia" formControlName="contrasenia" class="form-control"
+                        [ngClass]="{ 'is-invalid': formularioInicioSesion.get('contrasenia')?.touched && formularioInicioSesion.get('contrasenia')?.invalid }" />
+                    <div *ngIf="formularioInicioSesion.get('contrasenia')?.touched && formularioInicioSesion.get('contrasenia')?.hasError('required')"
+                        class="invalid-feedback">
+                        La contraseña es obligatoria.
+                    </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100 mt-4">Ingresar</button>
+                <!-- Botón de inicio de sesión -->
+                <button type="submit" class="btn btn-primary w-100 mt-4" [disabled]="formularioInicioSesion.invalid">
+                    Iniciar Sesión
+                </button>
+
+                <!-- Mensaje de éxito -->
+                <div *ngIf="mensaje" class="mensaje-exito d-flex justify-content-between align-items-center p-3">
+                    <span class="me-1">{{ mensaje }} </span>
+                </div>
+
+                <!-- Mensaje de error -->
+                <p *ngIf="error" class="text-danger text-center mt-3">{{ error }}</p>
             </form>
 
-            <!-- Enlaces debajo del formulario -->
+            <!-- Enlaces adicionales -->
             <div class="mt-3 text-center">
-                <a href="#" class="text-decoration-none d-block mb-2">¿Olvidaste tu contraseña?</a>
-                <a href="#" class="text-decoration-none">¿No tienes cuenta? Regístrate</a>
+                <a routerLink="/recuperar-contrasena" class="text-decoration-none d-block mb-2">¿Olvidaste tu
+                    contraseña?</a>
+                <a routerLink="/registrarse" class="text-decoration-none">¿No tienes cuenta? Regístrate</a>
             </div>
+
         </div>
     </div>
-
     <!-- Columna derecha (Imágenes) carrusel -->
     <div class="col-12 col-md-7 p-0">
         <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
