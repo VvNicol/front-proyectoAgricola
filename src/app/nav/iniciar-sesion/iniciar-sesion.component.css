@@ -1,115 +1,138 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&family=Poppins:wght@400;600&family=Open+Sans:wght@400;600&family=Roboto:wght@400;500&display=swap');
 
-/* Contenedor principal */
 .contenedor {
-  height: 52.875rem;
-  width: 80rem;
-  margin: 0 auto;
-}
-
-/* Contenedor del formulario */
-.login-container {
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  height: 90.6%;
   width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/* Estilos para el título (Raleway, tamaño 26) */
+.formulario {
+  z-index: 10;
+  max-width: 500px;
+}
+
+.enlaces{
+  cursor: pointer;
+}
+
 h2 {
   font-family: 'Raleway', sans-serif;
-  color: #4CAF50; /* Verde claro */
+  color: #4CAF50 !important;
   font-weight: 600;
   font-size: 26px;
+  text-align: center;
 }
 
-/* Estilos para los subtítulos (Poppins, tamaño 15) */
 label {
   font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 16px;
   color: #333;
+  margin-bottom: 0.5rem;
 }
 
-/* Estilos para las cabeceras (Open Sans, tamaño 18) */
-button {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: none;
+a {
+  font-family: "Roboto", sans-serif ;
+  color: #4CAF50;
+  font-size: 15px;
+  text-decoration: none;
 }
 
-/* Estilos para los párrafos (Roboto, tamaño 10.5, 11) */
-.text-center a {
-  font-family: 'Roboto', sans-serif;
-  font-size: 12px;
-  color: #007bff;
+p {
+  font-size: 15px;
+  font-family: "Roboto", sans-serif ;
+}	
+
+.mensaje-exito{
+  font-family: "Roboto", sans-serif !important;;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 5px;
+  margin-top: 10px;
 }
 
-.text-center a:hover {
-  text-decoration: underline;
+.imagen-fondo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  margin: 0px;
+  padding: 0px;
 }
 
-/* Estilo de los botones */
+input.form-control {
+  font-size: 15px;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+
 button.btn-primary {
-  background-color: #4CAF50;
+  background-color: #4CAF50!important;
   color: white;
-  text-transform: none;
   padding: 12px 0;
   font-size: 1rem;
-  font-weight: bold;
   border-radius: 8px;
+  border-color: #4CAF50 !important;
+  transition: background-color 0.3s ease;
 }
 
-/* Imagen de la columna derecha */
+button.btn-primary:hover {
+  background-color: #39933d;
+}
+
 .col-12 img {
   object-fit: cover;
-  height: 100%;
   width: 100%;
-  filter: brightness(0.7);
+  height: 100%;
+  filter: brightness(0.8);
 }
 
-/* Estilo para columnas en pantallas pequeñas */
+.carrusel-contenedor {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.carrusel-imagen {
+  width: 100%;
+  height: 100%;
+}
+
+.carrusel-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsividad */
 @media (max-width: 768px) {
   .contenedor {
     width: 100%;
     height: auto;
   }
-
-  .row {
-    flex-direction: column; /* Apilar los elementos verticalmente */
-  }
-
-  .col-12.col-md-5 {
-    margin-bottom: 20px;
-  }
-
-  .col-12.col-md-7 {
-    padding: 0;
-  }
-
-  .login-container {
-    padding: 20px;
-    width: 100%;
-  }
 }
 
-
-/* Media query para pantallas medianas y grandes */
 @media (min-width: 769px) {
-    .row {
-        display: flex; /* Usar flexbox para diseño en línea */
-    }
+  .row {
+    display: flex;
+  }
 
-    .col-5, .col-7 {
-        padding: 20px; /* Espaciado para las columnas */
-    }
+  .col-4,
+  .col-8 {
+    padding: 20px;
+  }
 
-    /* Imagen ajustada para pantallas grandes */
-    .col-7 img {
-        object-fit: cover;
-        height: 100%; 
-        width: 100%;
-    }
+  .col-8 img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
 }

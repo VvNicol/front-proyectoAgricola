@@ -39,7 +39,7 @@ export class RegistrarseComponent {
     );
   }
 
-  // Validador personalizado para contraseñas
+  // Validador para que las contraseñas sean iguales
   private verificacionContraseniasIdenticas(group: AbstractControl): ValidationErrors | null {
     const contrasenia = group.get('contrasenia')?.value;
     const confirmarContrasenia = group.get('confirmarContrasenia')?.value;
