@@ -3,11 +3,15 @@ import { IniciarSesionComponent } from './nav/iniciar-sesion/iniciar-sesion.comp
 import { RegistrarseComponent } from './nav/registrarse/registrarse.component';
 import { InicioComponent } from './nav/inicio/inicio.component';
 import { VerificacionCorreoComponent } from './verificacion-correo/verificacion-correo.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { AdminComponent } from './admin/admin.component';
 
 export const routes: Routes = [
-    { path: 'iniciar-sesion', component: IniciarSesionComponent },
     { path: 'registrarse', component: RegistrarseComponent },
-    { path: 'inicio', component: InicioComponent },
     { path: 'registrarse/verificar-correo', component: VerificacionCorreoComponent },
-    { path: "**", redirectTo: "/iniciar-sesion", pathMatch: "full"}
+    { path: 'iniciar-sesion', component: IniciarSesionComponent },
+    { path: 'inicio', component: InicioComponent },
+    { path: 'inicio/usuario', component: UsuarioComponent },
+    { path: 'inicio/admin', component: AdminComponent },
+    /*{ path: "**", redirectTo: "/inicio", pathMatch: "full" }*/
 ];
