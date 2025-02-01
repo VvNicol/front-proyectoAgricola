@@ -6,14 +6,18 @@ import { VerificacionCorreoComponent } from './verificacion-correo/verificacion-
 import { UsuarioComponent } from './usuario/usuario.component';
 import { AdminComponent } from './admin/admin.component';
 import { RecuperarContraseniaComponent } from './recuperar-contrasenia/recuperar-contrasenia.component';
+import { noAutorizadoGuard } from './seguridad/ruta/no-autorizado.guard';
+import { NoAutorizadoErrorComponent } from './error/no-autorizado-error/no-autorizado-error.component';
 
 export const routes: Routes = [
+
     { path: 'registrarse', component: RegistrarseComponent },
     { path: 'registrarse/verificar-correo', component: VerificacionCorreoComponent },
     { path: 'iniciar-sesion', component: IniciarSesionComponent },
     { path: 'iniciar-sesion/recuperar-contrasenia', component: RecuperarContraseniaComponent },
     { path: 'inicio', component: InicioComponent },
-    { path: 'inicio/usuario', component: UsuarioComponent },
-    { path: 'inicio/admin', component: AdminComponent },
-    /*{ path: "**", redirectTo: "/inicio", pathMatch: "full" }*/
+    { path: 'inicio/usuario', component: UsuarioComponent, canActivate: [noAutorizadoGuard] },
+    { path: 'inicio/admin', component: AdminComponent, canActivate: [noAutorizadoGuard] },
+    { path: 'inicio/no-autorizado', component: NoAutorizadoErrorComponent}
+
 ];

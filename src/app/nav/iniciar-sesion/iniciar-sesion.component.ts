@@ -37,14 +37,32 @@ export class IniciarSesionComponent {
     const datos = this.formularioInicioSesion.value;
 
     this.iniciarSesion.iniciarSesionApi(datos.correo, datos.contrasenia).subscribe({
+     
       next: (response) => {
+
         this.mensaje = response?.mensaje || "Inicio de sesión exitoso.";
         this.error = "";
+
+        const token = response?.token;
+        const rol = response?.rol;
+
+        if (rol) {
+          localStorage.setItem("token", token);
+          localStorage.setItem("rol", rol);
+        }
+
+        if (rol === "usuario") {
+          this.router.navigate(['inicio/usuario']);
+        } else if (rol === "admin") {
+          this.router.navigate(['inicio/admin']);
+        }
+
       },
       error: (err) => {
+        console.log('Error de la API:', err);
 
         if (err.error && typeof err.error === "object") {
-          this.error = err.error.mensaje || "Error al iniciar sesión.";
+          this.error = err.error.mensaje || "Ha ocurrido un error inesperado, intentelo porfavor mas tarde.";
           if (err.error.error) {
             this.error += " " + err.error.error; // Concatenar detalles del error
           }
