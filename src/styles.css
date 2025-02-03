@@ -1,5 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
+@use '@angular/material' as mat;
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Raleway', Helvetica Neue, sans-serif; }
 
+:root{
+    --mdc-theme-primary: #5ec762;
+    --mdc-theme-accent: #0c4e0e;
+    
+    @include mat.mat-progress-bar-overrides((
+        active-indicator-color: #5ec762,
+        track-color: #0c4e0e,
+    ));
+}
+.mat-button{
+    color: #0c4e0e !important;
+    font-family: 'Raleway' !important;
+}

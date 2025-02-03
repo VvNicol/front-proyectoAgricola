@@ -20,7 +20,8 @@
 
             <!-- Barra de progreso de Angular Material -->
             <mat-progress-bar *ngIf="cargando" mode="indeterminate"
-                style="background-color: #4CAF50;"></mat-progress-bar>
+                >
+            </mat-progress-bar>
 
             <form [formGroup]="formularioRegistro" (ngSubmit)="registrar()">
                 <!-- Nombre completo -->
