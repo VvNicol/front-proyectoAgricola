@@ -18,7 +18,9 @@
     align-items: center;
     width: 100%;
     background-color: #5ec762;
-   /* font-family: 'Raleway', sans-serif;*/
+    background-image: url('/assets/patron.png'); /* Ruta relativa correcta */
+    background-repeat: repeat; 
+    background-size: 800px 200px;
 }
 
 .logo-text {
