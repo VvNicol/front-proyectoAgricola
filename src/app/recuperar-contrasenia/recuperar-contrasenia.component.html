@@ -1,1 +1,115 @@
-<p>recuperar-contrasenia works!</p>
+<div class="container-fluid mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-4">
+      <!-- Sección de correo -->
+      <div *ngIf="!codigoEnviado && !codigoVerificado">
+        <h4 class="mb-3 text-center">Recuperación de Contraseña</h4>
+        <form [formGroup]="formularioCorreo">
+          <div class="mb-4">
+            <label for="correo" class="form-label">Ingresa tu correo electrónico:</label>
+            <input type="email" id="correo" formControlName="correo" class="form-control"
+              [ngClass]="{ 'is-invalid': formularioCorreo.get('correo')?.touched && formularioCorreo.get('correo')?.invalid }" />
+            <div *ngIf="formularioCorreo.get('correo')?.touched && formularioCorreo.get('correo')?.invalid"
+              class="invalid-feedback">
+              El correo electrónico es obligatorio o no es válido.
+            </div>
+          </div>
+
+          <!-- Botón para enviar el correo -->
+          <button type="button" class="btn w-100 text-white mb-2" [ngStyle]="{'background-color': '#5ec762'}"
+            [disabled]="formularioCorreo.invalid || cargando" (click)="enviarCorreo()">
+            Enviar Correo
+          </button>
+
+          <!-- Botón para avanzar a la siguiente pantalla -->
+          <button type="button" class="btn btn-primary w-100" [disabled]="!correoEnviado" (click)="siguientePaso()">
+            Siguiente
+          </button>
+
+          <!-- Spinner centrado debajo de los botones -->
+          <div class="text-center mt-3">
+            <mat-spinner *ngIf="cargando" diameter="30"></mat-spinner>
+          </div>
+        </form>
+      </div>
+
+      <!-- Sección de código -->
+      <div *ngIf="codigoEnviado && !codigoVerificado">
+        <h4 class="mb-3 text-center">Verificación de Código</h4>
+        <form [formGroup]="formularioCodigo" (ngSubmit)="verificarCodigo()">
+          <div class="mb-4">
+            <label for="codigo" class="form-label">Código</label>
+            <input type="text" id="codigo" formControlName="codigo" class="form-control"
+              [ngClass]="{ 'is-invalid': formularioCodigo.get('codigo')?.touched && formularioCodigo.get('codigo')?.invalid }" />
+            <div *ngIf="formularioCodigo.get('codigo')?.touched && formularioCodigo.get('codigo')?.invalid"
+              class="invalid-feedback">
+              El código es obligatorio.
+            </div>
+          </div>
+
+          <button type="submit" class="btn w-100 text-white" [ngStyle]="{'background-color': '#5ec762'}"
+            [disabled]="formularioCodigo.invalid || cargando">
+            Verificar Código
+          </button>
+          <button type="button" class="btn btn-secondary w-100 mt-2" (click)="volverAlCorreo()">Volver</button>
+
+          <div class="text-center mt-3">
+            <mat-spinner *ngIf="cargando" diameter="30"></mat-spinner>
+          </div>
+        </form>
+      </div>
+
+      <!-- Sección de nueva contraseña -->
+      <!-- Sección de nueva contraseña -->
+      <div *ngIf="codigoVerificado">
+        <h4 class="mb-3 text-center">Nueva Contraseña</h4>
+        <form [formGroup]="formularioNuevaContrasenia" (ngSubmit)="cambiarContrasenia()">
+
+          <!-- Campo de Nueva Contraseña -->
+          <div class="mb-4">
+            <label for="nuevaContrasenia" class="form-label">Nueva Contraseña</label>
+            <input type="password" id="nuevaContrasenia" formControlName="nuevaContrasenia" class="form-control"
+              [ngClass]="{ 'is-invalid': formularioNuevaContrasenia.get('nuevaContrasenia')?.touched && formularioNuevaContrasenia.get('nuevaContrasenia')?.invalid }" />
+            <div
+              *ngIf="formularioNuevaContrasenia.get('nuevaContrasenia')?.touched && formularioNuevaContrasenia.get('nuevaContrasenia')?.invalid"
+              class="invalid-feedback">
+              La contraseña es obligatoria y debe tener al menos 8 caracteres.
+            </div>
+          </div>
+
+          <!-- Campo de Confirmar Contraseña -->
+          <div class="mb-4">
+            <label for="confirmarContrasenia" class="form-label">Confirmar Contraseña</label>
+            <input type="password" id="confirmarContrasenia" formControlName="confirmarContrasenia" class="form-control"
+              [ngClass]="{ 'is-invalid': formularioNuevaContrasenia.hasError('noCoincide') && formularioNuevaContrasenia.get('confirmarContrasenia')?.touched }" />
+            <div
+              *ngIf="formularioNuevaContrasenia.hasError('noCoincide') && formularioNuevaContrasenia.get('confirmarContrasenia')?.touched"
+              class="invalid-feedback">
+              Las contraseñas no coinciden.
+            </div>
+          </div>
+
+          <!-- Botón para enviar la nueva contraseña -->
+          <button type="submit" class="btn w-100 text-white" [ngStyle]="{'background-color': '#5ec762'}"
+            [disabled]="formularioNuevaContrasenia.invalid || cargando">
+            Enviar
+          </button>
+
+          <!-- Botón para regresar a la verificación del código -->
+          <button type="button" class="btn btn-secondary w-100 mt-2" (click)="volverAlCodigo()">Volver</button>
+
+          <!-- Spinner debajo de los botones -->
+          <div class="text-center mt-3">
+            <mat-spinner *ngIf="cargando" diameter="30"></mat-spinner>
+          </div>
+        </form>
+
+        <!-- Botón para volver a iniciar sesión si la contraseña fue cambiada con éxito -->
+        <button *ngIf="mensajeExito" type="button" class="btn btn-primary w-100 mt-3" (click)="volverAiniciarSesion()">
+          Volver a Iniciar Sesión
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

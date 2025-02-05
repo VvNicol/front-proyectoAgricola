@@ -1,17 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
 
-
-/*
-::ng-deep .mat-button, 
-::ng-deep .mat-raised-button, 
-::ng-deep .mat-flat-button, 
-::ng-deep .mat-stroked-button {
-    font-family: serif !important;
-    font-size: 16px !important;
-    font-weight: 600 !important;
-}*/
-
-
 .navbar {
     display: flex;
     justify-content: center;
