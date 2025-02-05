@@ -1,17 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
 
-
-/*
-::ng-deep .mat-button, 
-::ng-deep .mat-raised-button, 
-::ng-deep .mat-flat-button, 
-::ng-deep .mat-stroked-button {
-    font-family: serif !important;
-    font-size: 16px !important;
-    font-weight: 600 !important;
-}*/
-
-
 .navbar {
     display: flex;
     justify-content: center;
@@ -21,6 +9,7 @@
     background-image: url('/assets/patron.png'); /* Ruta relativa correcta */
     background-repeat: repeat; 
     background-size: 800px 200px;
+    font-family: 'Poppins' !important;
 }
 
 .logo-text {
@@ -37,6 +26,7 @@
     justify-content: center;
     text-align: center;
     height: 100%;
+    transform: translatex(-50px);
 }
 
 .logo-contenedor img {
@@ -45,13 +35,28 @@
     margin-bottom: 1px;
 }
 
-
 .buttons-container {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
-button {
+.btnNav {
+    color: #377039 !important;
+    font-family: 'Poppins' !important;
+    font-weight: bold !important;
+    font-size: 15px !important;
+    background-color: transparent !important;
     margin-left: 10px;
-}
+    margin-right: 10px;
+  }
+  
+  .btnNav:hover {
+    background-color: #4ca14f !important;
+    color: white !important;
+    border-color: #5ac75e;
+  }
+  .btnNav.active {
+    background-color: #4ca14f9d !important;
+    color: #ffffff !important;
+    border: none !important;
+  }

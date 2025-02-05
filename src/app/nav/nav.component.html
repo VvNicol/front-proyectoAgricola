@@ -1,17 +1,25 @@
 <nav class="navbar">
-  <div class="buttons-container">
-    <button mat-button class="btnNav" (click)="navegarAInicio()">Inicio</button>
-  </div>
+  
   <div class="logo-contenedor row align-items-center justify-content-center">
     <img src="Img/Logo-sin-fondo .png" class="align-items-center justify-content-center" alt="Logo" class="logo" />
     <span class="logo-text">Terraflora</span>
   </div>
 
-  <div class="buttons-container">
-    <button mat-button class="btnNav" (click)="navegarAIniciarSesion()">Iniciar Sesión</button>
-    <button mat-button class="btnNav" (click)="navegarARegistrarse()">Registrarse</button>
-  </div>
+  <div class="buttons-container ">
+    <button 
+      class="btn btn-transparent btnNav" 
+      [ngClass]="{'active': currentRoute === '/inicio'}"
+      (click)="navegarAInicio()">Inicio</button>
 
-  
+    <button 
+      class="btn btn-transparent btnNav" 
+      [ngClass]="{'active': currentRoute === '/iniciar-sesion'}"
+      (click)="navegarAIniciarSesion()">Iniciar Sesión</button>
+
+    <button 
+      class="btn btn-transparent btnNav" 
+      [ngClass]="{'active': currentRoute === '/registrarse'}"
+      (click)="navegarARegistrarse()">Registrarse</button>
+  </div>
 
 </nav>
