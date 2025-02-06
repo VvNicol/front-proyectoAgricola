@@ -17,11 +17,9 @@ export class RecuperacionContraseniaService {
     return this.http.post(this.apiEnviarCodigoAlCorreo, { correo: correo }, { responseType: 'json' });
   }
 
-
   cambiarContrasenia(datos: any): Observable<any> {
     return this.http.post(this.apiNuevaContrasenia, datos, { responseType: 'json' });
   }
-
 
   verificarCodigo(body: { correo: string, codigo: string }): Observable<any> {
 

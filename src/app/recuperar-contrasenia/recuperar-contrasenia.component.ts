@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RecuperacionContraseniaService } from '../nav/servicios/recuperacion-contrasenia.service';
 import { Router } from '@angular/router';
@@ -15,7 +15,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class RecuperarContraseniaComponent {
 
-
   formularioCorreo: FormGroup;
   formularioCodigo: FormGroup;
   formularioNuevaContrasenia: FormGroup;
@@ -23,25 +22,51 @@ export class RecuperarContraseniaComponent {
   correoEnviado = false;
   codigoEnviado = false;
   codigoVerificado = false;
+  contraseniaCambiada = false;
+
   cargando = false;
+
   mensajeError: string = "";
   mensajeExito: string = "";
 
-  constructor(private fb: FormBuilder, private recuperacionContraseniaService: RecuperacionContraseniaService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private recuperacionContraseniaService: RecuperacionContraseniaService,
+    private router: Router,
+    private cd: ChangeDetectorRef) {
+
     this.formularioCorreo = this.fb.group({
       correo: ['', [Validators.required, Validators.email]]
     });
 
+    this.formularioCorreo.get('correo')?.valueChanges.subscribe(() => {
+      this.mensajeError = "";
+      this.mensajeExito = "";
+      this.cargando = false;
+    });
+
     this.formularioCodigo = this.fb.group({
-      codigo: ['', [Validators.required]]
+      codigo: ['', [Validators.required, Validators.pattern(/^\d+$/)]]
+    });
+
+    this.formularioCodigo.get('codigo')?.valueChanges.subscribe(() => {
+      this.mensajeError = "";
+      this.mensajeExito = "";
+      this.cargando = false;
     });
 
     this.formularioNuevaContrasenia = this.fb.group({
-      nuevaContrasenia: ['', [Validators.required, Validators.minLength(8)]],
+      nuevaContrasenia: ['', [Validators.required, Validators.minLength(6)]],
       confirmarContrasenia: ['', [Validators.required]]
     }, {
       validators: this.verificacionContraseniasIdenticas
     });
+
+    this.formularioNuevaContrasenia.valueChanges.subscribe(() => {
+      this.mensajeError = "";
+      this.mensajeExito = "";
+    });
+
   }
 
   verificacionContraseniasIdenticas(group: FormGroup) {
@@ -64,10 +89,10 @@ export class RecuperarContraseniaComponent {
     this.recuperacionContraseniaService.enviarCorreo(correo).subscribe({
       next: (respuesta) => {
         this.codigoEnviado = true;
-        this.mensajeExito = respuesta?.mensaje
+        this.mensajeExito = respuesta?.mensaje || 'Se ha enviado un correo electronico con el codigo';
       },
       error: (err) => {
-        this.mensajeError = err.error?.mensaje || 'Error al enviar el correo';
+        this.mensajeError = `${err.error?.mensaje || 'Error al enviar el correo.'} ${err.error?.error ? '- ' + err.error.error : ''}`;
       },
       complete: () => this.cargando = false
     });
@@ -80,6 +105,7 @@ export class RecuperarContraseniaComponent {
 
     this.cargando = true;
     this.mensajeError = "";
+    this.mensajeExito = "";
 
     const body = {
       correo: this.formularioCorreo.value.correo,
@@ -87,17 +113,16 @@ export class RecuperarContraseniaComponent {
     };
 
     this.recuperacionContraseniaService.verificarCodigo(body).subscribe({
-      next: () => {
+      next: (respuesta) => {
         this.codigoVerificado = true;
-        
+        this.mensajeExito = respuesta?.mensaje || 'Codigo verificado correctamente';
       },
       error: (err: any) => {
-        this.mensajeError = err.error?.mensaje || 'Código incorrecto';
+        this.mensajeError = `${err.error?.mensaje || 'Código incorrecto.'} ${err.error?.error ? '- ' + err.error.error : ''}`;
       },
       complete: () => this.cargando = false
     });
   }
-
 
   cambiarContrasenia(): void {
     if (this.formularioNuevaContrasenia.invalid) {
@@ -115,11 +140,20 @@ export class RecuperarContraseniaComponent {
 
     this.recuperacionContraseniaService.cambiarContrasenia(datos).subscribe({
       next: (respuesta) => {
+        this.cargando = true;
+        console.log("Respuesta del backend:", respuesta);
+        console.log("Mensaje de éxito:", respuesta?.mensaje);
         this.mensajeExito = respuesta?.mensaje || "Contraseña cambiada exitosamente.";
-        this.formularioNuevaContrasenia.reset();
+        this.contraseniaCambiada = true;
+       
+        setTimeout(() => {
+          this.formularioNuevaContrasenia.reset();
+          this.cd.detectChanges(); // 🔥 Forzar actualización de la vista después del reset
+        }, 3000);
+        
       },
       error: (err) => {
-        this.mensajeError = err.error?.mensaje || 'Error al cambiar la contraseña';
+        this.mensajeError = `${err.error?.mensaje || 'Error al cambiar la contraseña.'} ${err.error?.error ? '- ' + err.error.error : ''}`;
       },
       complete: () => this.cargando = false
     });
@@ -127,10 +161,14 @@ export class RecuperarContraseniaComponent {
 
   volverAlCorreo() {
     this.codigoEnviado = false;
+    this.mensajeError = "";
+    this.mensajeExito = "";
   }
 
   volverAlCodigo() {
     this.codigoVerificado = false;
+    this.mensajeError = "";
+    this.mensajeExito = "";
   }
 
   volverAiniciarSesion() {
@@ -139,9 +177,8 @@ export class RecuperarContraseniaComponent {
 
   siguientePaso(): void {
     if (this.codigoEnviado) {
-      this.codigoEnviado = true;  
+      this.codigoEnviado = true;
     }
   }
-  
 
 }
