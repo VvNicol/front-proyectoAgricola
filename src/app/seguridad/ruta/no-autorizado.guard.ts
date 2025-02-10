@@ -2,6 +2,7 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 
 export const noAutorizadoGuard: CanActivateFn = (route, state) => {
+  
   const ruta = inject(Router);
   const token = localStorage.getItem('token');
   const rol = localStorage.getItem('rol');
