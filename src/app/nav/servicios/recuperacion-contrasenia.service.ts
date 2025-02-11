@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class RecuperacionContraseniaService {
 
-  private apiNuevaContrasenia = 'http://localhost:7258/inicio/nueva-contrasenia';
-  private apiEnviarCodigoAlCorreo = 'http://localhost:7258/inicio/enviar-codigo';
-  private apiVerificarCodigo = 'http://localhost:7258/inicio/verificar-codigo';
+  private apiNuevaContrasenia = 'http://localhost:1180/IntermediarioDWP/api/intermediarios/nueva-contrasenia';
+  private apiEnviarCodigoAlCorreo = 'http://localhost:1180/IntermediarioDWP/api/intermediarios/enviar-codigo';
+  private apiVerificarCodigo = 'http://localhost:1180/IntermediarioDWP/api/intermediarios/verificar-codigo';
 
   constructor(private http: HttpClient) { }
 

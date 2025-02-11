@@ -40,6 +40,7 @@ export class IniciarSesionComponent {
      
       next: (response) => {
 
+        console.log('Respuesta del intermediario:', response);
         this.mensaje = response?.mensaje || "Inicio de sesión exitoso.";
         this.error = "";
 

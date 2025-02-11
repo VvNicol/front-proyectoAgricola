@@ -54,8 +54,10 @@ export class RegistrarseComponent {
     }
 
     // Obtener los valores del formulario
-    const datos = this.formularioRegistro.value;
+    const { confirmarContrasenia, ...datos } = this.formularioRegistro.value;
+    const datosJSON = JSON.stringify(datos);
 
+    console.log(datos);
     // Mostrar la barra de progreso
     this.cargando = true;
     this.progreso = 50; // Progreso inicial
@@ -64,7 +66,7 @@ export class RegistrarseComponent {
     this.registroService.registrarUsuario(datos).subscribe({
       next: (response) => {
         // Si el registro es exitoso, muestra el mensaje de éxito
-        this.mensaje = response?.message || "Registro exitoso. Por favor verifica tu correo para iniciar sesión.";
+        this.mensaje = response?.mensaje|| "Registro exitoso. Por favor verifica tu correo para iniciar sesión.";
         this.error = '';           // Limpiar el mensaje de error
         this.progreso = 100;
         this.cargando = false;      // Completar la barra de progreso
@@ -72,7 +74,7 @@ export class RegistrarseComponent {
       error: (err) => {
         // Si hay un error al registrar, muestra el mensaje de error
         this.mensaje = '';  // Limpiar el mensaje de éxito
-        this.error = err?.error || 'Hubo un error al registrar. Intenta nuevamente.';  // Muestra el error desde el backend
+        this.error =  err?.error?.error || 'Hubo un error al registrar. Intenta nuevamente.';  // Muestra el error desde el backend
         this.cargando = false; // Detiene la barra de progreso
       }
     });
