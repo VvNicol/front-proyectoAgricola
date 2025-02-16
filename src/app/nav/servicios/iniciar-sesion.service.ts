@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class IniciarSesionService {
 
-  private apiIniciarSesion = 'http://localhost:1180/IntermediarioDWP/api/intermediarios/iniciar-sesion';
+  private apiIniciarSesion = 'http://localhost:7258/inicio/iniciar-sesion';
 
   constructor(private http: HttpClient) { }
 

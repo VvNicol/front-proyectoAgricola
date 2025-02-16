@@ -1,1 +1,19 @@
-<p>usuario works!</p>
+<div class="container mt-4">
+    <h2 class="text-success">Listado de Cultivos</h2>
+    <button class="btn btn-success mb-3" routerLink="/inicio/usuario/cultivo-form">Agregar Cultivo</button>
+    <div class="row">
+        <div *ngFor="let cultivo of cultivos()" class="col-md-4">
+            <div class="card shadow-sm p-3 mb-4 bg-light">
+                <div class="card-body">
+                    <h5 class="card-title text-success">{{ cultivo.nombreCultivo }}</h5>
+                    <p class="card-text">Cantidad: {{ cultivo.cantidad }}</p>
+                    <p class="card-text">Parcela: {{ cultivo.nombreParcela }}</p>
+                    <p class="card-text">Siembra: {{ cultivo.fechaSiembra }}</p>
+                    <button class="btn btn-warning"
+                        [routerLink]="['/inicio/usuario/cultivo-editar', cultivo.cultivoId]">Editar</button>
+                    <button class="btn btn-danger" (click)="eliminarCultivo(cultivo.cultivoId)">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

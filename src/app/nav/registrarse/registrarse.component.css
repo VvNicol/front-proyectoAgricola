@@ -7,31 +7,6 @@
   padding: 0;
 }
 
-.columna-derecha {
-  position: relative;
-  overflow: hidden;
-}
-
-.columna-derecha::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 5px; /* Grosor de la línea */
-  height: 100%;
-  background-color: black; /* Color de la línea */
-  z-index: 1;
-}
-
-.imagen-fondo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
 
 .imagen-fondo2 {
   position: absolute;

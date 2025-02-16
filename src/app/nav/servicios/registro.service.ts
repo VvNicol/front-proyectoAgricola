@@ -7,12 +7,12 @@ import { catchError, Observable, throwError } from 'rxjs';
 })
 export class RegistroService {
 
-    private apiUrl = 'http://localhost:1180/IntermediarioDWP/api/intermediarios/registro';
+    private apiUrl = 'http://localhost:7258/inicio/registro';
 
     constructor(private http: HttpClient) { }
 
     registrarUsuario(datos: any): Observable<any> {
-        return this.http.post<any>(this.apiUrl, datos, { headers: { 'Content-Type': 'application/json' } });
+        return this.http.post(this.apiUrl, datos, { responseType: 'text' });
 
     }
 }

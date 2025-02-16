@@ -1,0 +1,49 @@
+<div class="container mt-4">
+    <h2 class="text-success">Registrar Cultivo</h2>
+
+    <!-- Bootstrap Alert -->
+    <div *ngIf="mensaje" class="alert alert-{{tipoAlerta}} alert-dismissible fade show" role="alert">
+        {{ mensaje }}
+        <button type="button" class="btn-close" (click)="mensaje = ''"></button>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="registrarCultivo()">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Nombre</label>
+                <input class="form-control" formControlName="nombre" required />
+            </div>
+            <div class="col-md-6">
+                <label>Cantidad</label>
+                <input type="number" class="form-control" formControlName="cantidad" required />
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <label>Descripción (opcional)</label>
+                <input class="form-control" formControlName="descripcion" />
+            </div>
+            <div class="col-md-6">
+                <label>Fecha de Siembra</label>
+                <input type="date" class="form-control" formControlName="fechaSiembra" required />
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <label>Seleccionar Parcela Existente</label>
+                <select class="form-control" formControlName="parcelaExistente" (change)="bloquearCampoEscribir()">
+                    <option value="">Seleccione una parcela</option>
+                    <option *ngFor="let parcela of parcelas" [ngValue]="parcela">{{ parcela }}</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>Crear Nueva Parcela</label>
+                <input class="form-control" formControlName="parcelaNueva" (input)="bloquearCampoSeleccion()" />
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success mt-3">Registrar</button>
+    </form>
+</div>
