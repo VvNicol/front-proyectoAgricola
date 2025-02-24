@@ -13,26 +13,44 @@ import { filter } from 'rxjs';
 export class NavComponent {
 
   currentRoute: string = '';
+  rolUsuario: string | null = null;
+  estaAutenticado: boolean = false;
 
   constructor(private router: Router) {
-    // Suscripción a eventos de navegación para actualizar la ruta activa
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
-      this.currentRoute = event.urlAfterRedirects;
+    this.router.events.subscribe(() => {
+      this.currentRoute = this.router.url;
+      this.verificarRolUsuario();
     });
   }
 
-  // Métodos de navegación
-  navegarAInicio(): void {
+  verificarRolUsuario() {
+    this.rolUsuario = localStorage.getItem('rol'); // ✅ Obtener el rol directamente
+    this.estaAutenticado = !!this.rolUsuario; // ✅ Si hay rol, el usuario está autenticado
+  }
+
+  navegarAInicio() {
     this.router.navigate(['/inicio']);
   }
 
-  navegarAIniciarSesion(): void {
+  navegarAIniciarSesion() {
     this.router.navigate(['/iniciar-sesion']);
   }
 
-  navegarARegistrarse(): void {
+  navegarARegistrarse() {
     this.router.navigate(['/registrarse']);
+  }
+
+  navegarAUsuarios() {
+    this.router.navigate(['/inicio/usuario']);
+  }
+
+  navegarAAdmin() {
+    this.router.navigate(['/inicio/admin']);
+  }
+
+  cerrarSesion() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('rol'); // ✅ Limpiar el rol
+    this.router.navigate(['/inicio']);
   }
 }

@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 
 export const noAutorizadoGuard: CanActivateFn = (route, state) => {
-  
+
   const ruta = inject(Router);
   const token = localStorage.getItem('token');
   const rol = localStorage.getItem('rol');
@@ -17,12 +17,12 @@ export const noAutorizadoGuard: CanActivateFn = (route, state) => {
     const rutaActual = state.url;
     console.log('Ruta Actual:', rutaActual);
 
-    if (rutaActual.includes('usuario') && rol !== 'usuario') {
+    if (rutaActual.includes('usuario') && rol !== 'USUARIO') {
       ruta.navigate(['inicio/no-autorizado']);
       return false;
     }
 
-    if (rutaActual.includes('admin') && rol !== 'admin') {
+    if (rutaActual.includes('admin') && rol !== 'ADMIN') {
       ruta.navigate(['inicio/no-autorizado']);
       return false;
     }

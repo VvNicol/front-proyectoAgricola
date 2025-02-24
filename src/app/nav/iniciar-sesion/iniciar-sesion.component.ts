@@ -37,7 +37,7 @@ export class IniciarSesionComponent {
     const datos = this.formularioInicioSesion.value;
 
     this.iniciarSesion.iniciarSesionApi(datos.correo, datos.contrasenia).subscribe({
-     
+
       next: (response) => {
 
         console.log('Respuesta del intermediario:', response);
@@ -52,9 +52,9 @@ export class IniciarSesionComponent {
           localStorage.setItem("rol", rol);
         }
 
-        if (rol === "usuario") {
+        if (rol === "USUARIO") {
           this.router.navigate(['inicio/usuario']);
-        } else if (rol === "admin") {
+        } else if (rol === "ADMIN") {
           this.router.navigate(['inicio/admin']);
         }
 

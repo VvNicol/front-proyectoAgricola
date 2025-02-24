@@ -13,6 +13,7 @@ import { CultivoFormComponent } from './usuario/cultivo-form/cultivo-form.compon
 
 export const routes: Routes = [
 
+    { path: '', redirectTo: 'inicio', pathMatch: 'full' },
     { path: 'registrarse', component: RegistrarseComponent },
     { path: 'registrarse/verificar-correo', component: VerificacionCorreoComponent },
     { path: 'iniciar-sesion', component: IniciarSesionComponent },
@@ -20,7 +21,7 @@ export const routes: Routes = [
     { path: 'inicio', component: InicioComponent },
     { path: 'inicio/usuario', component: UsuarioComponent, canActivate: [noAutorizadoGuard] },
     { path: 'inicio/admin', component: AdminComponent, canActivate: [noAutorizadoGuard] },
-    { path: 'inicio/no-autorizado', component: NoAutorizadoErrorComponent},
+    { path: 'inicio/no-autorizado', component: NoAutorizadoErrorComponent },
     { path: 'inicio/usuario/cultivo-editar/:id', component: CultivoEditarComponent, canActivate: [noAutorizadoGuard] },
     { path: 'inicio/usuario/cultivo-form', component: CultivoFormComponent, canActivate: [noAutorizadoGuard] },
 

@@ -10,7 +10,7 @@
     </div>
 
     <!-- (Registrarse) -->
-    <div class="col-12 col-md-8 col-lg-7 d-flex justify-content-center align-items-center">
+    <div class="col-12 col-md-8 col-lg-7 mt-5 d-flex justify-content-center align-items-center">
         <div class="col-12 col-md-9 col-lg-7 p-5 formulario bg-light rounded shadow-lg">
             <h2 class="text-center mb-4 text-primary">Registrarse</h2>
 
@@ -18,6 +18,8 @@
             <mat-progress-bar *ngIf="cargando" mode="indeterminate"></mat-progress-bar>
 
             <form [formGroup]="formularioRegistro" (ngSubmit)="registrar()">
+
+                <!-- Nombre Completo -->
                 <div class="mb-4">
                     <label for="nombreCompleto" class="form-label">Nombre Completo</label>
                     <input type="text" id="nombreCompleto" formControlName="nombreCompleto" class="form-control"
@@ -28,6 +30,7 @@
                     </div>
                 </div>
 
+                <!-- Correo Electrónico -->
                 <div class="mb-4">
                     <label for="correo" class="form-label">Correo Electrónico</label>
                     <input type="email" id="correo" formControlName="correo" class="form-control"
@@ -42,6 +45,7 @@
                     </div>
                 </div>
 
+                <!-- Teléfono -->
                 <div class="mb-4">
                     <label for="telefono" class="form-label">Teléfono</label>
                     <input type="tel" id="telefono" formControlName="telefono" class="form-control"
@@ -56,6 +60,7 @@
                     </div>
                 </div>
 
+                <!-- Contraseña -->
                 <div class="mb-4">
                     <label for="contrasenia" class="form-label">Contraseña</label>
                     <input type="password" id="contrasenia" formControlName="contrasenia" class="form-control"
@@ -70,18 +75,33 @@
                     </div>
                 </div>
 
+                <!-- Confirmar Contraseña -->
+                <div class="mb-4">
+                    <label for="confirmarContrasenia" class="form-label">Confirmar Contraseña</label>
+                    <input type="password" id="confirmarContrasenia" formControlName="confirmarContrasenia"
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': formularioRegistro.hasError('notMatching') && formularioRegistro.get('confirmarContrasenia')?.touched }" />
+                    <div *ngIf="formularioRegistro.hasError('notMatching') && formularioRegistro.get('confirmarContrasenia')?.touched"
+                        class="invalid-feedback">
+                        Las contraseñas no coinciden.
+                    </div>
+                </div>
+
+                <!-- Botón de registro -->
                 <button type="submit" class="btn btn-primary w-100 mt-4" [disabled]="formularioRegistro.invalid">
                     Registrarse
                 </button>
 
-                <div *ngIf="mensaje" class="mensaje-exito d-flex justify-content-between align-items-center p-3">
-                    <span class="me-1">{{ mensaje }}</span>
-                    <button class="btn btn-success btn-verde" (click)="confirmarExito()">
-                        <i class="bi bi-check-circle"></i>
-                    </button>
+                <!-- Mensaje de éxito -->
+                <div *ngIf="mensaje" class="alert alert-success mt-3 text-center">
+                    {{ mensaje }}
                 </div>
 
-                <p *ngIf="error" class="text-danger text-center mt-3">{{ error }}</p>
+                <!-- Mensaje de error -->
+                <div *ngIf="error" class="alert alert-danger mt-3 text-center">
+                    {{ error }}
+                </div>
+
             </form>
         </div>
     </div>

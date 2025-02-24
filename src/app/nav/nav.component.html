@@ -1,25 +1,36 @@
 <nav class="navbar">
-  
+
   <div class="logo-contenedor row align-items-center justify-content-center">
     <img src="Img/Logo-sin-fondo .png" class="align-items-center justify-content-center" alt="Logo" class="logo" />
     <span class="logo-text">Terraflora</span>
   </div>
 
   <div class="buttons-container ">
-    <button 
-      class="btn btn-transparent btnNav" 
-      [ngClass]="{'active': currentRoute === '/inicio'}"
-      (click)="navegarAInicio()">Inicio</button>
+    <div class="d-flex ms-auto">
+      <!-- 🔹 Invitado (No autenticado) -->
+      <ng-container *ngIf="!estaAutenticado">
+        <button class="btn btn-transparent btnNav" [ngClass]="{'active': currentRoute === '/inicio'}"
+          (click)="navegarAInicio()">Inicio</button>
+        <button class="btn btn-transparent btnNav" [ngClass]="{'active': currentRoute === '/iniciar-sesion'}"
+          (click)="navegarAIniciarSesion()">Iniciar Sesión</button>
+        <button class="btn btn-transparent btnNav" [ngClass]="{'active': currentRoute === '/registrarse'}"
+          (click)="navegarARegistrarse()">Registrarse</button>
+      </ng-container>
 
-    <button 
-      class="btn btn-transparent btnNav" 
-      [ngClass]="{'active': currentRoute === '/iniciar-sesion'}"
-      (click)="navegarAIniciarSesion()">Iniciar Sesión</button>
+      <!-- 👤 Usuario autenticado (Rol: USUARIO) -->
+      <ng-container *ngIf="estaAutenticado && rolUsuario === 'USUARIO'">
+        <button class="btn btn-transparent btnNav" [ngClass]="{'active': currentRoute === '/inicio/usuario'}"
+          (click)="navegarAUsuarios()">Mi Panel</button>
+        <button class="btn btn-danger btnNav" (click)="cerrarSesion()">Cerrar Sesión</button>
+      </ng-container>
 
-    <button 
-      class="btn btn-transparent btnNav" 
-      [ngClass]="{'active': currentRoute === '/registrarse'}"
-      (click)="navegarARegistrarse()">Registrarse</button>
+      <!-- 🔥 Administrador (Rol: ADMIN) -->
+      <ng-container *ngIf="estaAutenticado && rolUsuario === 'ADMIN'">
+        <button class="btn btn-transparent btnNav" [ngClass]="{'active': currentRoute === '/inicio/admin'}"
+          (click)="navegarAAdmin()">Panel Admin</button>
+        <button class="btn btn-danger btnNav" (click)="cerrarSesion()">Cerrar Sesión</button>
+      </ng-container>
+    </div>
   </div>
 
 </nav>
